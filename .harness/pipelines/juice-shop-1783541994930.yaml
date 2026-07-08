@@ -1,0 +1,74 @@
+pipeline:
+  identifier: Build_esweeney_snyk_juice_shop_1783542013401
+  name: Build juice-shop
+  orgIdentifier: default
+  projectIdentifier: default_project
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github_OAuth_1783541989359
+        repoName: esweeney-snyk/juice-shop
+  stages:
+    - stage:
+        identifier: build1
+        name: build
+        spec:
+          caching:
+            enabled: true
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: installdependencies
+                  name: install dependencies
+                  spec:
+                    command: npm install
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: test
+                  name: test
+                  spec:
+                    command: npm run test
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: lint
+                  name: lint
+                  spec:
+                    command: npm run lint
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: e2e
+                  name: e2e
+                  spec:
+                    command: npm run e2e
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: build
+                  name: build
+                  spec:
+                    command: npm run build
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: dockerbuild
+                  name: docker_build
+                  spec:
+                    caching: true
+                    connectorRef: <+input>
+                    repo: hello/world
+                    tags:
+                      - latest
+                  timeout: ""
+                  type: BuildAndPushDockerRegistry
+          platform:
+            arch: Amd64
+            os: Linux
+          runtime:
+            spec: {}
+            type: Cloud
+        type: CI
