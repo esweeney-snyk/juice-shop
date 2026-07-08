@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_esweeney_snyk_juice_shop_1783543880668-push-trigger-input-set
+  identifier: Build_esweeney_snyk_juice_shop_1783543880668pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: Snyk_Testing_Integrations
+  pipeline:
+    identifier: Build_esweeney_snyk_juice_shop_1783543880668
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
