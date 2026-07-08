@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_esweeney_snyk_juice_shop_1783542013401-pr-trigger-input-set
+  identifier: Build_esweeney_snyk_juice_shop_1783542013401prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_esweeney_snyk_juice_shop_1783542013401
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
