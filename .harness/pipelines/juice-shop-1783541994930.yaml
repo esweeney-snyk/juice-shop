@@ -26,6 +26,43 @@ pipeline:
                     command: npm install
                   timeout: ""
                   type: Run
+              - parallel:
+                  - step:
+                      type: Snyk
+                      name: Snyk SCA
+                      identifier: Snyk_SCA
+                      spec:
+                        mode: orchestration
+                        config: oss
+                        target:
+                          type: repository
+                          detection: auto
+                        advanced:
+                          log:
+                            level: info
+                          fail_on_severity: high
+                        privileged: true
+                        auth:
+                          access_token: snyk_uat.1fcad39e.eyJlIjoxNzkxMzE4MzQ0LCJoIjoic255ay5pbyIsImoiOiJBWjlEYUljUVRVYU94UC1rTVFwMHZnIiwicyI6Ii01bE5pSWdpUlE2eHdFUERleVhpR0EiLCJ0aWQiOiJBQUFBQUFBQUFBQUFBQUFBQUFBQUFBIn0.NX12f_NJRG5FzOcDOnk3wKBVGYwJz7jv5_RUm4VXZdm4YIGspqlrKOwAtZzaVI1_yXQtuWYX-bM65Nfm5r6SAQ
+                        tool:
+                          ingest_tool_severity: true
+                  - step:
+                      type: Snyk
+                      name: Snyk SAST
+                      identifier: Snyk_SAST
+                      spec:
+                        mode: orchestration
+                        config: code
+                        target:
+                          type: repository
+                          detection: auto
+                        advanced:
+                          log:
+                            level: info
+                          fail_on_severity: high
+                        privileged: true
+                        auth:
+                          access_token: snyk_uat.1fcad39e.eyJlIjoxNzkxMzE4MzQ0LCJoIjoic255ay5pbyIsImoiOiJBWjlEYUljUVRVYU94UC1rTVFwMHZnIiwicyI6Ii01bE5pSWdpUlE2eHdFUERleVhpR0EiLCJ0aWQiOiJBQUFBQUFBQUFBQUFBQUFBQUFBQUFBIn0.NX12f_NJRG5FzOcDOnk3wKBVGYwJz7jv5_RUm4VXZdm4YIGspqlrKOwAtZzaVI1_yXQtuWYX-bM65Nfm5r6SAQ
               - step:
                   identifier: test
                   name: test
