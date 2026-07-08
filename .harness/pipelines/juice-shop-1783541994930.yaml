@@ -63,45 +63,6 @@ pipeline:
                         privileged: true
                         auth:
                           access_token: snyk_uat.1fcad39e.eyJlIjoxNzkxMzE4MzQ0LCJoIjoic255ay5pbyIsImoiOiJBWjlEYUljUVRVYU94UC1rTVFwMHZnIiwicyI6Ii01bE5pSWdpUlE2eHdFUERleVhpR0EiLCJ0aWQiOiJBQUFBQUFBQUFBQUFBQUFBQUFBQUFBIn0.NX12f_NJRG5FzOcDOnk3wKBVGYwJz7jv5_RUm4VXZdm4YIGspqlrKOwAtZzaVI1_yXQtuWYX-bM65Nfm5r6SAQ
-              - step:
-                  identifier: test
-                  name: test
-                  spec:
-                    command: npm run test
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: lint
-                  name: lint
-                  spec:
-                    command: npm run lint
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: e2e
-                  name: e2e
-                  spec:
-                    command: npm run e2e
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: build
-                  name: build
-                  spec:
-                    command: npm run build
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
-                    tags:
-                      - latest
-                  timeout: ""
-                  type: BuildAndPushDockerRegistry
           platform:
             os: MacOS
             arch: Arm64
